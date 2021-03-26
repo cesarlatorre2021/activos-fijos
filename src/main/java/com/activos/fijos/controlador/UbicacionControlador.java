@@ -38,12 +38,12 @@ public class UbicacionControlador {
     } 
     
     @GetMapping("/All/{ubicacionId}")
-    @ApiOperation("busca una bodega con un ID")
+    @ApiOperation("busca una ciudad con un ID")
     @ApiResponses({
     	@ApiResponse(code = 200, message = "OK"),
-    	@ApiResponse(code = 484, message = "bodega not found")
+    	@ApiResponse(code = 404, message = "Ubicacion not found")
     })
-	public Optional<Ubicacion> getProveedor(@ApiParam(value = "El id de los lugares donde tiene presencia la empresa", required = true, example ="7") @PathVariable("ubicacionId") long idUbicacion){
+	public Optional<Ubicacion> getProveedor(@ApiParam(value = "El id de las ciudades donde tiene presencia la empresa", required = true, example ="7") @PathVariable("ubicacionId") long idUbicacion){
 		return ubicacionServicio.getByIdBodega(idUbicacion);
 	}
     

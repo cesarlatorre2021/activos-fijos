@@ -41,7 +41,7 @@ public class AreaControlador {
     @ApiOperation("busca un area de la empresa con un ID")
     @ApiResponses({
     	@ApiResponse(code = 200, message = "OK"),
-    	@ApiResponse(code = 484, message = "bodega not found")
+    	@ApiResponse(code = 404, message = "Area not found")
     })
 	public Optional<Area> getProveedor(@ApiParam(value = "El id de las areas que tiene la empresa", required = true, example ="7") @PathVariable("areaId") long idArea){
 		return areaServicio.getByIdArea(idArea);
