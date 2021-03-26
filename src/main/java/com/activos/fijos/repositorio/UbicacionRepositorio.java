@@ -8,9 +8,9 @@ import com.activos.fijos.entity.Ubicacion;
 public interface UbicacionRepositorio {
 	
 	List<Ubicacion> getAll();
-	Optional<Ubicacion> getByIdBodega(long idUbicacion);
-	Ubicacion save(Ubicacion ubicacion);
+	Optional<Ubicacion> getByIdUbicacion(long idUbicacion);
+	List<Ubicacion> save(List<Ubicacion> ubicacion);
 	void delete(long idUbicacion);
-	void modify(Ubicacion ubicacion);
+	Ubicacion modify(Ubicacion ubicacion);
 
 }

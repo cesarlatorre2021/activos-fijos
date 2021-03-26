@@ -44,11 +44,11 @@ public class UbicacionControlador {
     	@ApiResponse(code = 404, message = "Ubicacion not found")
     })
 	public Optional<Ubicacion> getProveedor(@ApiParam(value = "El id de las ciudades donde tiene presencia la empresa", required = true, example ="7") @PathVariable("ubicacionId") long idUbicacion){
-		return ubicacionServicio.getByIdBodega(idUbicacion);
+		return ubicacionServicio.getByIdUbicacion(idUbicacion);
 	}
     
     @PostMapping("/save")
-	public ResponseEntity<Ubicacion> save(@RequestBody Ubicacion ubicacion) {
+	public ResponseEntity<List<Ubicacion>> save(@RequestBody List<Ubicacion> ubicacion) {
 		return new ResponseEntity<> (ubicacionServicio.save(ubicacion), HttpStatus.CREATED);
 	}
     

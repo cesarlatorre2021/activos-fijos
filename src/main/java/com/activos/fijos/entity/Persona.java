@@ -1,19 +1,22 @@
 package com.activos.fijos.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "persona")
 public class Persona {
-	
+
 	@Id
 	@Column(name = "id_persona")
 	private long idPersona;
@@ -21,7 +24,7 @@ public class Persona {
 	@Column(name = "tipo_documento")
 	private String tipoDocumento;
 	
-	@Column(name = "numero_documento")
+	@Column(name = "num_documento")
 	private long numeroDocumento;
 	
 	@Column(name = "primer_nombre")
@@ -45,16 +48,17 @@ public class Persona {
 	@Column(name = "fecha_modificacion")
 	private LocalDateTime fechaModificacion;
 	
-	@ManyToOne
-	@MapsId("idUbicacion")
-	@JoinColumn(name = "id_ubicacion", insertable = true, updatable = false)
-	private Ubicacion ubicacion;
+	@OneToMany(mappedBy = "persona", cascade = {CascadeType.ALL})
+    private List<Activos> activos;
 	
-    @ManyToOne
-    @MapsId("idArea")
-	@JoinColumn(name = "id_area", insertable = true, updatable = false)
-	private Area area;
-    
+	@ManyToOne
+    @JoinColumn(name = "id_area", insertable = true, updatable = false)
+    private Area area;
+	
+	@ManyToOne
+    @JoinColumn(name = "id_ubicacion", insertable = true, updatable = false)
+    private Ubicacion ubicacion;
+	      
 	public long getIdPersona() {
 		return idPersona;
 	}
@@ -135,12 +139,12 @@ public class Persona {
 		this.fechaModificacion = fechaModificacion;
 	}
 
-	public Ubicacion getUbicacion() {
-		return ubicacion;
+	public List<Activos> getActivos() {
+		return activos;
 	}
 
-	public void setUbicacion(Ubicacion ubicacion) {
-		this.ubicacion = ubicacion;
+	public void setActivos(List<Activos> activos) {
+		this.activos = activos;
 	}
 
 	public Area getArea() {
@@ -149,6 +153,14 @@ public class Persona {
 
 	public void setArea(Area area) {
 		this.area = area;
+	}
+
+	public Ubicacion getUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(Ubicacion ubicacion) {
+		this.ubicacion = ubicacion;
 	}
 	
 }

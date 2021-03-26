@@ -3,8 +3,8 @@ package com.activos.fijos.entity;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
@@ -14,9 +14,11 @@ import javax.persistence.Table;
 @Table(name = "activos")
 public class Activos {
 	
-	@Id
-	@Column(name = "id_bodega")
-	private long idBodega;
+	@EmbeddedId
+	private ActivosPK id;
+	
+	@Column(name = "id_activo")
+	private long idActivo;
 	
 	private String nombre;
 	private String descripcion;
@@ -46,13 +48,21 @@ public class Activos {
     @MapsId("idArea")
 	@JoinColumn(name = "id_area", insertable = true, updatable = false)
 	private Area area;
-
-	public long getIdBodega() {
-		return idBodega;
+    
+	public ActivosPK getId() {
+		return id;
 	}
 
-	public void setIdBodega(long idBodega) {
-		this.idBodega = idBodega;
+	public void setId(ActivosPK id) {
+		this.id = id;
+	}
+
+	public long getIdActivo() {
+		return idActivo;
+	}
+
+	public void setIdActivo(long idBodega) {
+		this.idActivo = idBodega;
 	}
 
 	public String getNombre() {
@@ -151,12 +161,12 @@ public class Activos {
 		this.persona = persona;
 	}
 
-	public Area getArea() {
+	/*public Area getArea() {
 		return area;
 	}
 
 	public void setArea(Area area) {
 		this.area = area;
-	}
+	}*/
 	
 }

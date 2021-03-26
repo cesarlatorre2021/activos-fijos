@@ -1,12 +1,14 @@
 package com.activos.fijos.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -29,10 +31,15 @@ public class Area {
 	@Column(name = "fecha_modificacion")
 	private LocalDateTime fechaModificacion;
 	
-	@ManyToMany
-    @JoinColumn(name = "id_ubicacion", insertable = true, updatable = false)
-    private Ubicacion ubicacion;
-
+	@OneToMany(mappedBy = "area", cascade = {CascadeType.ALL})
+    private List<Activos> activos;
+	
+    @OneToMany(mappedBy = "area", cascade = {CascadeType.ALL})
+    private List<Persona> personas;
+    
+    @ManyToMany(mappedBy = "areas")
+    private List<Ubicacion> ubicacion;
+	
 	public long getIdArea() {
 		return idArea;
 	}
@@ -73,11 +80,27 @@ public class Area {
 		this.fechaModificacion = fechaModificacion;
 	}
 
-	public Ubicacion getUbicacion() {
+	public List<Activos> getActivos() {
+		return activos;
+	}
+
+	public void setActivos(List<Activos> activos) {
+		this.activos = activos;
+	}
+
+	public List<Persona> getPersonas() {
+		return personas;
+	}
+
+	public void setPersonas(List<Persona> personas) {
+		this.personas = personas;
+	}
+
+	public List<Ubicacion> getUbicacion() {
 		return ubicacion;
 	}
 
-	public void setUbicacion(Ubicacion ubicacion) {
+	public void setUbicacion(List<Ubicacion> ubicacion) {
 		this.ubicacion = ubicacion;
 	}
 	

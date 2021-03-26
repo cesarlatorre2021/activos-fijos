@@ -19,16 +19,16 @@ public class UbicacionServicio {
         return ubicacionRepositorio.getAll();
     }
 	
-	public Optional<Ubicacion> getByIdBodega(long idUbicacion) {
-        return ubicacionRepositorio.getByIdBodega(idUbicacion);
+	public Optional<Ubicacion> getByIdUbicacion(long idUbicacion) {
+        return ubicacionRepositorio.getByIdUbicacion(idUbicacion);
     }
 	
-	public Ubicacion save(Ubicacion bodega) {
-        return ubicacionRepositorio.save(bodega);
+	public List<Ubicacion> save(List<Ubicacion> ubicacion) {
+        return ubicacionRepositorio.save(ubicacion);
     }
 
     public boolean delete(long idUbicacion) {
-    	if (getByIdBodega(idUbicacion).isPresent() == true) {
+    	if (getByIdUbicacion(idUbicacion).isPresent() == true) {
     		ubicacionRepositorio.delete(idUbicacion);
     		return true;
     	}else {
@@ -37,7 +37,7 @@ public class UbicacionServicio {
     }
     
     public Ubicacion modify(Ubicacion save) {
-        return ubicacionRepositorio.save(save);
+        return ubicacionRepositorio.modify(save);
     }
 
 }

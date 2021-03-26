@@ -48,7 +48,7 @@ public class AreaControlador {
 	}
     
     @PostMapping("/save")
-	public ResponseEntity<Area> save(@RequestBody Area area) {
+	public ResponseEntity<List<Area>> save(@RequestBody List<Area> area) {
 		return new ResponseEntity<> (areaServicio.save(area), HttpStatus.CREATED);
 	}
     

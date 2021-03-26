@@ -1,10 +1,16 @@
 package com.activos.fijos.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,6 +37,20 @@ public class Ubicacion {
 	
 	@Column(name = "fecha_modificacion")
 	private LocalDateTime fechaModificacion;
+	
+    @OneToMany(mappedBy = "ubicacion")
+    private List<Persona> personas;
+    
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(
+            name = "ubicacion_area",
+            joinColumns = {@JoinColumn(name = "id_ubicacion")},
+            inverseJoinColumns = {@JoinColumn(name = "id_Area")}
+    )
+    private List<Area> areas;
 
 	public long getIdUbicacion() {
 		return idUbicacion;
@@ -88,4 +108,12 @@ public class Ubicacion {
 		this.fechaModificacion = fechaModificacion;
 	}
 
+	public List<Persona> getPersonas() {
+		return personas;
+	}
+
+	public void setPersonas(List<Persona> personas) {
+		this.personas = personas;
+	}
+	
 }

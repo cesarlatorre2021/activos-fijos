@@ -9,8 +9,8 @@ public interface AreaRepositorio {
 	
 	List<Area> getAll();
 	Optional<Area> getByIdArea(long idArea);
-	Area save(Area area);
+	List<Area> save(List<Area> area);
 	void delete(long idArea);
-	void modify(Area area);
+	Area modify(Area area);
 
 }

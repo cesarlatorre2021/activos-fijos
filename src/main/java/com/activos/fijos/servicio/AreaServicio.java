@@ -23,7 +23,7 @@ public class AreaServicio {
         return areaRepositorio.getByIdArea(idArea);
     }
 	
-	public Area save(Area area) {
+	public List<Area> save(List<Area> area) {
         return areaRepositorio.save(area);
     }
 
@@ -37,7 +37,7 @@ public class AreaServicio {
     }
     
     public Area modify(Area save) {
-        return areaRepositorio.save(save);
+        return areaRepositorio.modify(save);
     }
 
 }
