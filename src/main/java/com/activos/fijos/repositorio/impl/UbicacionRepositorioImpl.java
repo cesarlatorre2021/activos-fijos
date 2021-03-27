@@ -23,7 +23,7 @@ public class UbicacionRepositorioImpl implements UbicacionRepositorio {
 
 	@Override
 	public Optional<Ubicacion> getByIdUbicacion(long idUbicacion) {
-		return ubicacionCrudRepositorio.listarAreaID(idUbicacion);
+		return ubicacionCrudRepositorio.listarUbicacionID(idUbicacion);
 	}
 
 	@Override

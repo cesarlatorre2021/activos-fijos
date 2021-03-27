@@ -23,7 +23,7 @@ public class AreaServicio {
         return areaRepositorio.getByIdArea(idArea);
     }
 	
-	public List<Area> save(List<Area> area) {
+	public List<Area> save(List<Area>  area) {
         return areaRepositorio.save(area);
     }
 

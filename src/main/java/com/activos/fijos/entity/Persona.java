@@ -3,15 +3,11 @@ package com.activos.fijos.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name = "persona")
@@ -48,17 +44,9 @@ public class Persona {
 	@Column(name = "fecha_modificacion")
 	private LocalDateTime fechaModificacion;
 	
-	@OneToMany(mappedBy = "persona", cascade = {CascadeType.ALL})
+	@OneToMany(mappedBy = "persona")
     private List<Activos> activos;
-	
-	@ManyToOne
-    @JoinColumn(name = "id_area", insertable = true, updatable = false)
-    private Area area;
-	
-	@ManyToOne
-    @JoinColumn(name = "id_ubicacion", insertable = true, updatable = false)
-    private Ubicacion ubicacion;
-	      
+	   
 	public long getIdPersona() {
 		return idPersona;
 	}
@@ -139,28 +127,4 @@ public class Persona {
 		this.fechaModificacion = fechaModificacion;
 	}
 
-	public List<Activos> getActivos() {
-		return activos;
-	}
-
-	public void setActivos(List<Activos> activos) {
-		this.activos = activos;
-	}
-
-	public Area getArea() {
-		return area;
-	}
-
-	public void setArea(Area area) {
-		this.area = area;
-	}
-
-	public Ubicacion getUbicacion() {
-		return ubicacion;
-	}
-
-	public void setUbicacion(Ubicacion ubicacion) {
-		this.ubicacion = ubicacion;
-	}
-	
 }

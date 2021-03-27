@@ -15,7 +15,7 @@ public interface UbicacionCrudRepositorio extends CrudRepository <Ubicacion, Int
 	@Query(value = "SELECT * "
 			+ "       FROM UBICACION"
 			+ "      WHERE ID_UBICACION = :idubicacion", nativeQuery = true)
-	Optional<Ubicacion> listarAreaID(@Param("idubicacion") long idUbicacion);
+	Optional<Ubicacion> listarUbicacionID(@Param("idubicacion") long idUbicacion);
 	
 	@Modifying
 	@Transactional

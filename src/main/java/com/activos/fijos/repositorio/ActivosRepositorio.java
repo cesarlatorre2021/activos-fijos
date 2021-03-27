@@ -9,8 +9,8 @@ public interface ActivosRepositorio {
 	
 	List<Activos> getAll();
 	Optional<Activos> getByIdActivos(long idActivos);
-	Activos save(Activos activos);
 	void delete(long idActivos);
-	void modify(Activos activos);
+	Activos modify(Activos activos);
+	List<Activos> save(List<Activos> activos);
 
 }

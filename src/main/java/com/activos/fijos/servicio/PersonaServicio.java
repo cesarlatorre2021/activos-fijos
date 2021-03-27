@@ -7,28 +7,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.activos.fijos.entity.Persona;
+import com.activos.fijos.repositorio.PersonaRepositorio;
 
 @Service
 public class PersonaServicio {
 	
 	@Autowired
-	private PersonaServicio personaServicio;
+	private PersonaRepositorio personaRepositorio;
 	
 	public List<Persona> getAll() {
-        return personaServicio.getAll();
+        return personaRepositorio.getAll();
     }
 	
 	public Optional<Persona> getByIdPersona(long idPersona) {
-        return personaServicio.getByIdPersona(idPersona);
+        return personaRepositorio.getByIdPersona(idPersona);
     }
 	
-	public Persona save(Persona persona) {
-        return personaServicio.save(persona);
+	public List<Persona> save(List<Persona> persona) {
+        return personaRepositorio.save(persona);
     }
 
     public boolean delete(long idPersona) {
     	if (getByIdPersona(idPersona).isPresent() == true) {
-    		personaServicio.delete(idPersona);
+    		personaRepositorio.delete(idPersona);
     		return true;
     	}else {
     		return false;
@@ -36,7 +37,7 @@ public class PersonaServicio {
     }
     
     public Persona modify(Persona save) {
-        return personaServicio.save(save);
+        return personaRepositorio.modify(save);
     }
 
 }

@@ -3,20 +3,18 @@ package com.activos.fijos.entity;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "activos")
 public class Activos {
 	
-	@EmbeddedId
-	private ActivosPK id;
-	
+	@Id
 	@Column(name = "id_activo")
 	private long idActivo;
 	
@@ -40,23 +38,13 @@ public class Activos {
     private LocalDateTime fechaCompra;
     
     @ManyToOne
-	@MapsId("idPersona")
-	@JoinColumn(name = "id_persona", insertable = true, updatable = false)
-	private Persona persona;
-	
-    @ManyToOne
-    @MapsId("idArea")
-	@JoinColumn(name = "id_area", insertable = true, updatable = false)
-	private Area area;
+    @JoinColumn(name = "idPersona", insertable = true, updatable = false)
+    private Persona persona;
     
-	public ActivosPK getId() {
-		return id;
-	}
-
-	public void setId(ActivosPK id) {
-		this.id = id;
-	}
-
+    @ManyToOne
+    @JoinColumn(name = "idArea", insertable = true, updatable = false)
+    private Area area;
+	
 	public long getIdActivo() {
 		return idActivo;
 	}
@@ -161,12 +149,12 @@ public class Activos {
 		this.persona = persona;
 	}
 
-	/*public Area getArea() {
+	public Area getArea() {
 		return area;
 	}
 
 	public void setArea(Area area) {
 		this.area = area;
-	}*/
-	
+	}
+
 }

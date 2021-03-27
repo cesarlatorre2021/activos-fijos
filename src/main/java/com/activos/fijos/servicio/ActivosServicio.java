@@ -23,7 +23,7 @@ public class ActivosServicio {
         return activosRepositorio.getByIdActivos(idActivos);
     }
 	
-	public Activos save(Activos activos) {
+	public List<Activos> save(List<Activos> activos) {
         return activosRepositorio.save(activos);
     }
 
@@ -37,7 +37,7 @@ public class ActivosServicio {
     }
     
     public Activos modify(Activos activos) {
-        return activosRepositorio.save(activos);
+        return activosRepositorio.modify(activos);
     }
 
 }

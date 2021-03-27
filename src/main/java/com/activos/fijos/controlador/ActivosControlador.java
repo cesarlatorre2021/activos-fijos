@@ -46,11 +46,11 @@ public class ActivosControlador {
 	public Optional<Activos> getProveedor(@ApiParam(value = "El id de los activos que tiene la empresa", required = true, example ="7") @PathVariable("activoId") long idActivos){
 		return activosServicio.getByIdActivos(idActivos);
 	}
-    
+   
     @PostMapping("/save")
-	public ResponseEntity<Activos> save(@RequestBody Activos activos) {
-		return new ResponseEntity<> (activosServicio.save(activos), HttpStatus.CREATED);
-	}
+   	public ResponseEntity<List<Activos>> save(@RequestBody List<Activos> activos) {
+   		return new ResponseEntity<> (activosServicio.save(activos), HttpStatus.CREATED);
+   	}
     
     @SuppressWarnings("rawtypes")
    	@DeleteMapping("/delete/{id}")

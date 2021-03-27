@@ -8,10 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "ubicacion")
@@ -38,9 +37,6 @@ public class Ubicacion {
 	@Column(name = "fecha_modificacion")
 	private LocalDateTime fechaModificacion;
 	
-    @OneToMany(mappedBy = "ubicacion")
-    private List<Persona> personas;
-    
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE
@@ -108,12 +104,12 @@ public class Ubicacion {
 		this.fechaModificacion = fechaModificacion;
 	}
 
-	public List<Persona> getPersonas() {
-		return personas;
+	public List<Area> getAreas() {
+		return areas;
 	}
 
-	public void setPersonas(List<Persona> personas) {
-		this.personas = personas;
+	public void setAreas(List<Area> areas) {
+		this.areas = areas;
 	}
 	
 }
