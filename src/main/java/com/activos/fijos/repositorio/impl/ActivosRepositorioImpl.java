@@ -1,5 +1,6 @@
 package com.activos.fijos.repositorio.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,6 +51,21 @@ public class ActivosRepositorioImpl implements ActivosRepositorio{
 				                                 activos.getValorCompra(), 
 				                                 activos.getIdActivo());
 		return activos;
+	}
+
+	@Override
+	public Optional<Activos> getByTipoActivo(String tipoActivo) {
+		return activosCrudRepositorio.listarActivosTipo(tipoActivo);
+	}
+	
+	@Override
+	public Optional<Activos> getBySerialActivo(String serialActivo) {
+		return activosCrudRepositorio.listarActivosSerial(serialActivo);
+	}
+
+	@Override
+	public Optional<List<Activos>> getByFechaActivo(LocalDateTime fechaActivo) {
+		return activosCrudRepositorio.listarActivosFecha(fechaActivo);
 	}
 
 }

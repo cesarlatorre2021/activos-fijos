@@ -1,5 +1,7 @@
 package com.activos.fijos.persistencia.crud;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Modifying;
@@ -16,6 +18,21 @@ public interface ActivosCrudRepositorio extends CrudRepository <Activos, Integer
 			+ "       FROM ACTIVOS"
 			+ "      WHERE ID_ACTIVO = :idactivo", nativeQuery = true)
 	Optional<Activos> listarActivosID(@Param("idactivo") long idActivo);
+	
+	@Query(value = "SELECT * "
+			+ "       FROM ACTIVOS"
+			+ "      WHERE TIPO = :tipoactivo", nativeQuery = true)
+	Optional<Activos> listarActivosTipo(@Param("tipoactivo") String tipoActivo);
+	
+	@Query(value = "SELECT * "
+			+ "       FROM ACTIVOS"
+			+ "      WHERE SERIAL = :serialactivo", nativeQuery = true)
+	Optional<Activos> listarActivosSerial(@Param("serialactivo") String serialActivo);
+	
+	@Query(value = "SELECT * "
+			+ "       FROM ACTIVOS"
+			+ "      WHERE DATE(TO_CHAR(FECHA_COMPRA,'YYYY-MM-DD')) = :fechaactivo", nativeQuery = true)
+	Optional<List<Activos>> listarActivosFecha(@Param("fechaactivo") LocalDateTime fechaActivo);
 	
 	@Modifying
 	@Transactional

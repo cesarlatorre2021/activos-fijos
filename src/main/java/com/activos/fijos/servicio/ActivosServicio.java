@@ -1,5 +1,6 @@
 package com.activos.fijos.servicio;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,18 @@ public class ActivosServicio {
 	
 	public Optional<Activos> getByIdActivos(long idActivos) {
         return activosRepositorio.getByIdActivos(idActivos);
+    }
+	
+	public Optional<Activos> getByTipo(String tipoActivo) {
+        return activosRepositorio.getByTipoActivo(tipoActivo);
+    }
+	
+	public Optional<Activos> getBySerial(String serialActivo) {
+        return activosRepositorio.getBySerialActivo(serialActivo);
+    }
+	
+	public Optional<List<Activos>> getByFecha(LocalDateTime serialFecha) {
+        return activosRepositorio.getByFechaActivo(serialFecha);
     }
 	
 	public List<Activos> save(List<Activos> activos) {

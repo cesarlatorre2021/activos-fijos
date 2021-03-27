@@ -31,7 +31,7 @@ public class AreaControlador {
     private AreaServicio areaServicio;
 	
     @GetMapping("/All")
-    @ApiOperation("Enlista todas las areas que tiene la empresa")
+    @ApiOperation("Enlista todas las areas que conforman la empresa")
     @ApiResponse(code = 200, message = "OK")
 	public ResponseEntity<List<Area>> getAll(){
 		return new ResponseEntity<> (areaServicio.getAll(), HttpStatus.OK);
@@ -43,17 +43,19 @@ public class AreaControlador {
     	@ApiResponse(code = 200, message = "OK"),
     	@ApiResponse(code = 404, message = "Area not found")
     })
-	public Optional<Area> getProveedor(@ApiParam(value = "El id de las areas que tiene la empresa", required = true, example ="7") @PathVariable("areaId") long idArea){
+	public Optional<Area> getProveedor(@ApiParam(value = "El id de las areas que tiene la empresa", required = true, example ="1") @PathVariable("areaId") long idArea){
 		return areaServicio.getByIdArea(idArea);
 	}
     
     @PostMapping("/save")
+    @ApiOperation("Guarda en la BD una nueva area de la empresa")
 	public ResponseEntity<List<Area>> save(@RequestBody List<Area> area) {
 		return new ResponseEntity<> (areaServicio.save(area), HttpStatus.CREATED);
 	}
     
     @SuppressWarnings("rawtypes")
    	@DeleteMapping("/delete/{id}")
+    @ApiOperation("Permite eliminar de la BD una area de la empresa")
    	public ResponseEntity delete (@PathVariable("id") long idArea) {
    		if(areaServicio.delete(idArea) == true){
    			return new ResponseEntity<>(HttpStatus.OK);
@@ -63,6 +65,7 @@ public class AreaControlador {
    	}
     
     @PutMapping("/modify")
+    @ApiOperation("Permite modificar de la BD el registro de alguna area de la empresa")
 	public ResponseEntity<Area> modify(@RequestBody Area area) {
 		return new ResponseEntity<> (areaServicio.modify(area), HttpStatus.OK);
 	}
