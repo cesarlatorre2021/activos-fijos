@@ -45,7 +45,8 @@ public class AreaControlador {
     })
 	public Optional<Area> getProveedor(
 			@ApiParam(value = "El id de las areas que tiene la empresa", required = true, example ="1")
-			@PathVariable("areaId") long idArea){
+			@PathVariable("areaId") long idArea)
+    {
 		return areaServicio.getByIdArea(idArea);
 	}
     

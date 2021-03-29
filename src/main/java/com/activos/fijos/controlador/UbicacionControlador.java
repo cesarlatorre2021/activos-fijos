@@ -45,7 +45,8 @@ public class UbicacionControlador {
     })
 	public Optional<Ubicacion> getProveedor(
 			@ApiParam(value = "El id de las ciudades donde tiene presencia la empresa", required = true, example ="1") 
-			@PathVariable("ubicacionId") long idUbicacion){
+			@PathVariable("ubicacionId") long idUbicacion)
+    {
 		return ubicacionServicio.getByIdUbicacion(idUbicacion);
 	}
     

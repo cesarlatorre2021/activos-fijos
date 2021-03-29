@@ -45,7 +45,8 @@ public class PersonaControlador {
     })
 	public Optional<Persona> getProveedor(
 			@ApiParam(value = "El id de las personas vinculadas a la empresa", required = true, example ="1") 
-			@PathVariable("personaId") long idPersona){
+			@PathVariable("personaId") long idPersona)
+    {
 		return personaServicio.getByIdPersona(idPersona);
 	}
     

@@ -56,7 +56,8 @@ public class ActivosControlador {
     })
 	public ResponseEntity<Optional<List<Activos>>> getAcitovoId(
 			@ApiParam(value = "El id de los activos que tiene la empresa", required = true, example ="1") 
-			@PathVariable("activoId") long idActivos){
+			@PathVariable("activoId") long idActivos)
+    {
 		try {
 	    	if(activosServicio.getByIdActivos(idActivos).get().isEmpty() == false) {
 	    	    return new ResponseEntity<> (activosServicio.getByIdActivos(idActivos), HttpStatus.OK);
@@ -76,7 +77,8 @@ public class ActivosControlador {
     })
 	public ResponseEntity<Optional<List<Activos>>> getAcitovoByTipo(
 			@ApiParam(value = "El Tipo del activo que tiene la empresa", required = true, example ="1") 
-			@PathVariable("activoTipo") String tipoActivo){
+			@PathVariable("activoTipo") String tipoActivo)
+    {
     	try {
 	    	if(activosServicio.getByTipo(tipoActivo).get().isEmpty() == false) {
 	    		return new ResponseEntity<> (activosServicio.getByTipo(tipoActivo), HttpStatus.OK);
@@ -96,7 +98,8 @@ public class ActivosControlador {
     })
 	public ResponseEntity<Optional<List<Activos>>> getAcitovoBySerial(
 			@ApiParam(value = "El serial del activo que tiene la empresa", required = true, example ="1") 
-			@PathVariable("activoSerial") String activoSerial){
+			@PathVariable("activoSerial") String activoSerial)
+    {
 		try {
 	    	if(activosServicio.getBySerial(activoSerial).get().isEmpty() == false) {
 	    		return new ResponseEntity<> (activosServicio.getBySerial(activoSerial), HttpStatus.OK);
@@ -116,7 +119,8 @@ public class ActivosControlador {
     })
 	public ResponseEntity<Optional<List<Activos>>> getAcitovoByFecha(
 			@ApiParam(value = "La fecha de compra del activo que tiene la empresa", required = true, example ="2021-03-26") 
-			@PathVariable("activoFechaCompra") String fechaCompra){
+			@PathVariable("activoFechaCompra") String fechaCompra)
+    {
     	
     	DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     	LocalDateTime fecha = LocalDate.parse(fechaCompra, formato).atStartOfDay();
