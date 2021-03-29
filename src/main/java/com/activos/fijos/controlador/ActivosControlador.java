@@ -52,7 +52,8 @@ public class ActivosControlador {
     @ApiOperation("busca un activo fijo de la empresa con un ID")
     @ApiResponses({
     	@ApiResponse(code = 200, message = "OK"),
-    	@ApiResponse(code = 404, message = "Activo fijo not found")
+    	@ApiResponse(code = 404, message = "Activo fijo not found"),
+    	@ApiResponse(code = 500, message = "Internal Server Error")
     })
 	public ResponseEntity<Optional<List<Activos>>> getAcitovoId(
 			@ApiParam(value = "El id de los activos que tiene la empresa", required = true, example ="1") 
