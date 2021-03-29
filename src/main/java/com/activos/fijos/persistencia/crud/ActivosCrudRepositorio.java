@@ -17,17 +17,17 @@ public interface ActivosCrudRepositorio extends CrudRepository <Activos, Integer
 	@Query(value = "SELECT * "
 			+ "       FROM ACTIVOS"
 			+ "      WHERE ID_ACTIVO = :idactivo", nativeQuery = true)
-	Optional<Activos> listarActivosID(@Param("idactivo") long idActivo);
+	Optional<List<Activos>> listarActivosID(@Param("idactivo") long idActivo);
 	
 	@Query(value = "SELECT * "
 			+ "       FROM ACTIVOS"
 			+ "      WHERE TIPO = :tipoactivo", nativeQuery = true)
-	Optional<Activos> listarActivosTipo(@Param("tipoactivo") String tipoActivo);
+	Optional<List<Activos>> listarActivosTipo(@Param("tipoactivo") String tipoActivo);
 	
 	@Query(value = "SELECT * "
 			+ "       FROM ACTIVOS"
 			+ "      WHERE SERIAL = :serialactivo", nativeQuery = true)
-	Optional<Activos> listarActivosSerial(@Param("serialactivo") String serialActivo);
+	Optional<List<Activos>> listarActivosSerial(@Param("serialactivo") String serialActivo);
 	
 	@Query(value = "SELECT * "
 			+ "       FROM ACTIVOS"

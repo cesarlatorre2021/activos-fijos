@@ -36,8 +36,16 @@ public class ActivosControlador {
     @GetMapping("/All")
     @ApiOperation("Enlista todas los activos fijos que tiene la empresa")
     @ApiResponse(code = 200, message = "OK")
-	public ResponseEntity<List<Activos>> getAll(){
-		return new ResponseEntity<> (activosServicio.getAll(), HttpStatus.OK);
+	public ResponseEntity<List<Activos>> getAll(){	
+		try {
+	    	if(activosServicio.getAll().isEmpty() == false) {
+	    		return new ResponseEntity<> (activosServicio.getAll(), HttpStatus.OK);
+	    	}else {
+	    		return new ResponseEntity<> (HttpStatus.NOT_FOUND);
+	    	}
+    	}catch (Exception e) {
+    		return new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
+    	}	
     } 
     
     @GetMapping("/All/{activoId}")
@@ -46,8 +54,18 @@ public class ActivosControlador {
     	@ApiResponse(code = 200, message = "OK"),
     	@ApiResponse(code = 404, message = "Activo fijo not found")
     })
-	public Optional<Activos> getAcitovoId(@ApiParam(value = "El id de los activos que tiene la empresa", required = true, example ="1") @PathVariable("activoId") long idActivos){
-		return activosServicio.getByIdActivos(idActivos);
+	public ResponseEntity<Optional<List<Activos>>> getAcitovoId(
+			@ApiParam(value = "El id de los activos que tiene la empresa", required = true, example ="1") 
+			@PathVariable("activoId") long idActivos){
+		try {
+	    	if(activosServicio.getByIdActivos(idActivos).get().isEmpty() == false) {
+	    	    return new ResponseEntity<> (activosServicio.getByIdActivos(idActivos), HttpStatus.OK);
+	    	}else {
+	    		return new ResponseEntity<> (HttpStatus.NOT_FOUND);
+	    	}
+    	}catch (Exception e) {
+    		return new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
+    	}
 	}
     
     @GetMapping("/All/tipo/{activoTipo}")
@@ -56,8 +74,18 @@ public class ActivosControlador {
     	@ApiResponse(code = 200, message = "OK"),
     	@ApiResponse(code = 404, message = "Activo fijo not found")
     })
-	public Optional<Activos> getAcitovoByTipo(@ApiParam(value = "El Tipo del activo que tiene la empresa", required = true, example ="1") @PathVariable("activoTipo") String tipoActivo){
-		return activosServicio.getByTipo(tipoActivo);
+	public ResponseEntity<Optional<List<Activos>>> getAcitovoByTipo(
+			@ApiParam(value = "El Tipo del activo que tiene la empresa", required = true, example ="1") 
+			@PathVariable("activoTipo") String tipoActivo){
+    	try {
+	    	if(activosServicio.getByTipo(tipoActivo).get().isEmpty() == false) {
+	    		return new ResponseEntity<> (activosServicio.getByTipo(tipoActivo), HttpStatus.OK);
+	    	}else {
+	    		return new ResponseEntity<> (HttpStatus.NOT_FOUND);
+	    	}
+    	}catch (Exception e) {
+    		return new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
+    	}
 	}
     
     @GetMapping("/All/serial/{activoSerial}")
@@ -66,8 +94,18 @@ public class ActivosControlador {
     	@ApiResponse(code = 200, message = "OK"),
     	@ApiResponse(code = 404, message = "Activo fijo not found")
     })
-	public Optional<Activos> getAcitovoBySerial(@ApiParam(value = "El serial del activo que tiene la empresa", required = true, example ="1") @PathVariable("activoSerial") String tipoActivo){
-		return activosServicio.getBySerial(tipoActivo);
+	public ResponseEntity<Optional<List<Activos>>> getAcitovoBySerial(
+			@ApiParam(value = "El serial del activo que tiene la empresa", required = true, example ="1") 
+			@PathVariable("activoSerial") String activoSerial){
+		try {
+	    	if(activosServicio.getBySerial(activoSerial).get().isEmpty() == false) {
+	    		return new ResponseEntity<> (activosServicio.getBySerial(activoSerial), HttpStatus.OK);
+	    	}else {
+	    		return new ResponseEntity<> (HttpStatus.NOT_FOUND);
+	    	}
+    	}catch (Exception e) {
+    		return new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
+    	}
 	}
     
     @GetMapping("/All/fecha/{activoFechaCompra}")
@@ -76,10 +114,23 @@ public class ActivosControlador {
     	@ApiResponse(code = 200, message = "OK"),
     	@ApiResponse(code = 404, message = "Activo fijo not found")
     })
-	public Optional<List<Activos>> getAcitovoByFecha(@ApiParam(value = "La fecha de compra del activo que tiene la empresa", required = true, example ="2021-03-26") @PathVariable("activoFechaCompra") String fechaCompra){
+	public ResponseEntity<Optional<List<Activos>>> getAcitovoByFecha(
+			@ApiParam(value = "La fecha de compra del activo que tiene la empresa", required = true, example ="2021-03-26") 
+			@PathVariable("activoFechaCompra") String fechaCompra){
+    	
     	DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     	LocalDateTime fecha = LocalDate.parse(fechaCompra, formato).atStartOfDay();
-		return activosServicio.getByFecha(fecha);
+    	
+    	try {
+	    	if(activosServicio.getByFecha(fecha).get().isEmpty() == false) {
+	    		return new ResponseEntity<> (activosServicio.getByFecha(fecha), HttpStatus.OK);
+	    	}else {
+	    		return new ResponseEntity<> (HttpStatus.NOT_FOUND);
+	    	}
+    	}catch (Exception e) {
+    		return new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
+    	}
+    	
 	}
     
     @PostMapping("/save")

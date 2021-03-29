@@ -43,7 +43,9 @@ public class PersonaControlador {
     	@ApiResponse(code = 200, message = "OK"),
     	@ApiResponse(code = 404, message = "persona not found")
     })
-	public Optional<Persona> getProveedor(@ApiParam(value = "El id de las personas vinculadas a la empresa", required = true, example ="1") @PathVariable("personaId") long idPersona){
+	public Optional<Persona> getProveedor(
+			@ApiParam(value = "El id de las personas vinculadas a la empresa", required = true, example ="1") 
+			@PathVariable("personaId") long idPersona){
 		return personaServicio.getByIdPersona(idPersona);
 	}
     

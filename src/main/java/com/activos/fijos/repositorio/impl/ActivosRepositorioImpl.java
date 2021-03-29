@@ -23,7 +23,7 @@ public class ActivosRepositorioImpl implements ActivosRepositorio{
 	}
 
 	@Override
-	public Optional<Activos> getByIdActivos(long idActivos) {
+	public Optional<List<Activos>> getByIdActivos(long idActivos) {
 		return activosCrudRepositorio.listarActivosID(idActivos);
 	}
 
@@ -54,12 +54,12 @@ public class ActivosRepositorioImpl implements ActivosRepositorio{
 	}
 
 	@Override
-	public Optional<Activos> getByTipoActivo(String tipoActivo) {
+	public Optional<List<Activos>> getByTipoActivo(String tipoActivo) {
 		return activosCrudRepositorio.listarActivosTipo(tipoActivo);
 	}
 	
 	@Override
-	public Optional<Activos> getBySerialActivo(String serialActivo) {
+	public Optional<List<Activos>> getBySerialActivo(String serialActivo) {
 		return activosCrudRepositorio.listarActivosSerial(serialActivo);
 	}
 

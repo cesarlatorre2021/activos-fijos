@@ -43,7 +43,9 @@ public class UbicacionControlador {
     	@ApiResponse(code = 200, message = "OK"),
     	@ApiResponse(code = 404, message = "Ubicacion not found")
     })
-	public Optional<Ubicacion> getProveedor(@ApiParam(value = "El id de las ciudades donde tiene presencia la empresa", required = true, example ="1") @PathVariable("ubicacionId") long idUbicacion){
+	public Optional<Ubicacion> getProveedor(
+			@ApiParam(value = "El id de las ciudades donde tiene presencia la empresa", required = true, example ="1") 
+			@PathVariable("ubicacionId") long idUbicacion){
 		return ubicacionServicio.getByIdUbicacion(idUbicacion);
 	}
     

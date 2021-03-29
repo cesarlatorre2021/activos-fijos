@@ -20,15 +20,15 @@ public class ActivosServicio {
         return activosRepositorio.getAll();
     }
 	
-	public Optional<Activos> getByIdActivos(long idActivos) {
+	public Optional<List<Activos>> getByIdActivos(long idActivos) {
         return activosRepositorio.getByIdActivos(idActivos);
     }
 	
-	public Optional<Activos> getByTipo(String tipoActivo) {
+	public Optional<List<Activos>> getByTipo(String tipoActivo) {
         return activosRepositorio.getByTipoActivo(tipoActivo);
     }
 	
-	public Optional<Activos> getBySerial(String serialActivo) {
+	public Optional<List<Activos>> getBySerial(String serialActivo) {
         return activosRepositorio.getBySerialActivo(serialActivo);
     }
 	
