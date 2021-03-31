@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.activos.fijos.entity.Activos;
+import com.activos.fijos.exception.BeanNotFoundException;
 import com.activos.fijos.servicio.ActivosServicio;
 
 import io.swagger.annotations.ApiOperation;
@@ -43,8 +45,9 @@ public class ActivosControlador {
 	    	}else {
 	    		return new ResponseEntity<> (HttpStatus.NOT_FOUND);
 	    	}
-    	}catch (Exception e) {
-    		return new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
+    	}catch (NoSuchElementException e) {
+    		throw new BeanNotFoundException("bean not Found" );
+    		//return new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
     	}	
     } 
     
